@@ -1,0 +1,53 @@
+name: VoiceControl
+author: Johan "Zephyyrr" Fogelström
+main: swe.kbk.VoiceControl.VoiceControl
+version: 2.0
+website: http://www.kbkompaniet.se
+
+
+commands:
+  proclaim:
+    description: Say a phrase out loud (but silently) inorder to trigger voice activated machinery
+    usage: /proclaim [List of passwords]
+    aliases: [p, mumble]
+    permission: voicecontrol.proclaim
+  
+  voiceregister:
+    description: Register a voice to the block you are targeting, so it will trigger if the password is proclaimd in the radius around it
+    usage: /voiceregister password radius
+    aliases: vr
+    permission: voicecontrol.register
+    
+  voiceunregister:
+    description: Unregister a voice to the block you are targeting, so it will not trigger if the password is proclaimd in the radius around it
+    usage: /voiceunregister password radius
+    aliases: vur
+    permission: voicecontrol.unregister
+
+permissions:
+  voicecontrol.*:
+    description: Gives access to all VoiceControl commands
+    children:
+      voicecontrol.proclaim: true
+      voicecontrol.register: true
+      voicecontrol.register.far: true
+      voicecontrol.mumble: true
+  voicecontrol.proclaim:
+    description: Allows you to proclaim passwords
+    default: op
+  voicecontrol.register:
+    description: Allows you to register a new switch
+    default: op
+  voicecontrol.register.far:
+    description: Allows you to use longer distances when registering
+    default: op
+    children:
+      voicecontrol.register: true
+  voicecontrol.unregister:
+    description: Allows you to unregister passwords
+    default: op
+  voicecontrol.mumble:
+    description: Allows you to mumble your passwords silently
+    children:
+      voicecontrol.proclaim: true
+    default: op

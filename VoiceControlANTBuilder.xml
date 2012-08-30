@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_jar" name="Create Runnable Jar for Project VoiceControl">
+    <target name="create_jar">
+        <jar destfile="/home/johan/Projekt/VoiceControl.jar" filesetmanifest="mergewithoutmain">
+            <manifest>
+                <attribute name="Main-Class" value="VoiceControl"/>
+                <attribute name="Class-Path" value="."/>
+            </manifest>
+            <fileset dir="/home/johan/Projekt/VoiceControl/bin"/>
+        	<fileset file="/home/johan/Projekt/VoiceControl/plugin.yml"/>
+        </jar>
+    </target>
+</project>

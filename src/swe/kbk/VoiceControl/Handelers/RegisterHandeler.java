@@ -44,19 +44,24 @@ public class RegisterHandeler implements CommandExecutor {
 			return true;
 		}
 
-		if (!checkPermission(sender, "voicecontrol.register.far")) {
-			sender.sendMessage("You do not have permission for registering that far!");
-			sender.sendMessage("Your registration has been capped at "
-					+ MAX_WITHOUT_FAR + " blocks!");
-			args[1] = "20";
-		}
-
 		int radius = 5;
 		if (args.length > 1) {
 			try {
 				radius = Integer.parseInt(args[1]);
 			} catch (NumberFormatException e) {
+				sender.sendMessage("The range you entered was invalid.");
+				return false;
 			}
+		} else {
+			sender.sendMessage("You forgot to specify a range.");
+			return false;
+		}
+
+		if (!checkPermission(sender, "voicecontrol.register.far") && radius > MAX_WITHOUT_FAR) {
+			sender.sendMessage("You do not have permission for registering that far!");
+			sender.sendMessage("Your registration has been capped at "
+					+ MAX_WITHOUT_FAR + " blocks!");
+			radius = MAX_WITHOUT_FAR;
 		}
 
 		Switchable sw = null;

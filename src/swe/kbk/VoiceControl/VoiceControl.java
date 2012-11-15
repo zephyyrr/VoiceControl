@@ -21,11 +21,9 @@ import swe.kbk.VoiceControl.Listeners.VCBlockListener;
 public class VoiceControl extends JavaPlugin {
 
 	DBHandeler dbh;
-	Logger log;
 	//public static VoiceControl plugin;
 
 	public VoiceControl() {
-		log = Logger.getLogger("kbk.VoiceControl");
 		try {
 			dbh = new DBHandeler(this);
 			dbh.SetupDB();
@@ -37,7 +35,6 @@ public class VoiceControl extends JavaPlugin {
 	}
 
 	public void onEnable() {
-		log = Logger.getLogger("kbk.VoiceControl");
 		new ProclaimHandeler(this);
 		new RegisterHandeler(this);
 		new UnregisterHandeler(this);
@@ -61,9 +58,5 @@ public class VoiceControl extends JavaPlugin {
 
 	public DBHandeler getDBHandeler() {
 		return dbh;
-	}
-	
-	public Logger getLogger() {
-		return log;
 	}
 }
